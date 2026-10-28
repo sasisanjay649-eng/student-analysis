@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Advanced Student Analysis System</title>
+  <meta name="description" content="AI-powered high-precision behavioural and academic performance evaluation system.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Noto+Sans+Tamil:wght@600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Animated Cyber Background Canvas -->
+  <canvas id="bg-canvas"></canvas>
+  <div class="cyber-grid-overlay"></div>
+  <div class="cyber-glow-orb orb-1"></div>
+  <div class="cyber-glow-orb orb-2"></div>
+
+  <!-- Confetti Canvas for Result Screen -->
+  <canvas id="confetti-canvas"></canvas>
+
+  <main class="app-container">
+    <!-- Top System Bar -->
+    <header class="system-hud-bar">
+      <div class="hud-left">
+        <span class="status-indicator"></span>
+        <span class="hud-tag">SECURE SYSTEM NODE v4.9</span>
+      </div>
+      <div class="hud-right">
+        <span class="hud-badge">NEURAL CORE: ONLINE</span>
+        <span class="hud-code" id="system-time">00:00:00</span>
+      </div>
+    </header>
+
+    <!-- SCREEN 1: Input Screen -->
+    <section id="screen-input" class="screen-card active" aria-labelledby="main-heading">
+      <div class="card-corner corner-tl"></div>
+      <div class="card-corner corner-tr"></div>
+      <div class="card-corner corner-bl"></div>
+      <div class="card-corner corner-br"></div>
+
+      <div class="badge-pill">
+        <svg class="pill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"></circle>
+          <path d="m9 12 2 2 4-4"></path>
+        </svg>
+        <span>BEHAVIOURAL AI SCANNER</span>
+      </div>
+
+      <h1 id="main-heading" class="cyber-title">
+        Advanced Student <span class="gradient-text">Analysis System</span>
+      </h1>
+      
+      <p class="cyber-subtitle">Enter your name to begin the analysis.</p>
+
+      <form id="analysis-form" class="analysis-form" novalidate>
+        <div class="input-group">
+          <label for="student-name-input" class="input-label">
+            <span class="label-tag">IDENTIFIER</span>
+            <span class="label-hint">Biometric / Academic Record ID</span>
+          </label>
+          <div class="input-wrapper">
+            <span class="input-icon">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+            </span>
+            <input 
+              type="text" 
+              id="student-name-input" 
+              name="studentName"
+              placeholder="Your name" 
+              autocomplete="off" 
+              spellcheck="false"
+              maxlength="50"
+              aria-describedby="validation-msg"
+            />
+          </div>
+          <!-- Friendly validation message -->
+          <div id="validation-msg" class="validation-message" role="alert" aria-live="polite">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="8" x2="12" y2="12"></line>
+              <line x1="12" y1="16" x2="12.01" y2="16"></line>
+            </svg>
+            <span>Please enter your name first.</span>
+          </div>
+        </div>
+
+        <button type="submit" id="btn-start" class="cyber-btn primary-btn">
+          <span class="btn-glow"></span>
+          <span class="btn-content">
+            <span class="btn-text">Start Analysis</span>
+            <svg class="btn-arrow" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </span>
+        </button>
+      </form>
+
+      <footer class="system-meta">
+        <div class="meta-item"><span>ENCRYPTION</span> <span>256-BIT QUANTUM</span></div>
+        <div class="meta-item"><span>ACCURACY</span> <span>99.98%</span></div>
+        <div class="meta-item"><span>SOURCE</span> <span>GLOBAL CAMPUS DB</span></div>
+      </footer>
+    </section>
+
+    <!-- SCREEN 2: Loading Screen -->
+    <section id="screen-loading" class="screen-card" aria-labelledby="loading-heading">
+      <div class="card-corner corner-tl"></div>
+      <div class="card-corner corner-tr"></div>
+      <div class="card-corner corner-bl"></div>
+      <div class="card-corner corner-br"></div>
+
+      <!-- Cyber Biometric Scanner Ring -->
+      <div class="scanner-container">
+        <div class="scanner-ring outer-ring"></div>
+        <div class="scanner-ring middle-ring"></div>
+        <div class="scanner-ring inner-ring"></div>
+        <div class="scanner-core">
+          <svg class="pulse-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M2 12h5l2-7 4 14 3-7h6"></path>
+          </svg>
+        </div>
+        <div class="scanner-sweep"></div>
+      </div>
+
+      <div class="loading-headings">
+        <h2 id="loading-heading" class="loading-main-title">Analysing student behaviour…</h2>
+        <div class="subject-display">
+          <span class="subject-tag">SUBJECT TARGET</span>
+          <span id="subject-name" class="subject-name-highlight">Subject: Rahul</span>
+        </div>
+      </div>
+
+      <!-- Progress Section (Takes exactly 20 seconds) -->
+      <div class="progress-box">
+        <div class="progress-meta">
+          <span class="progress-status-label">DIAGNOSTIC TELEMETRY</span>
+          <span id="progress-percent" class="progress-percent">0%</span>
+        </div>
+        <div class="progress-bar-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+          <div id="progress-bar-fill" class="progress-bar-fill">
+            <span class="progress-glow-head"></span>
+          </div>
+        </div>
+        <div class="progress-timer">
+          <span id="time-elapsed-label">Elapsed: 00:00.0</span>
+          <span>Target Window: 00:20.0</span>
+        </div>
+      </div>
+
+      <!-- Rotating Status Messages -->
+      <div class="status-message-wrapper">
+        <div class="terminal-prefix">&gt; SYSTEM_LOG:</div>
+        <p id="rotating-status-msg" class="rotating-status">Checking attendance records…</p>
+      </div>
+
+      <!-- Tech Telemetry Ticker -->
+      <div class="tech-ticker">
+        <div class="ticker-chip">
+          <span class="chip-dot"></span> SCAN FREQ: 4.88 GHz
+        </div>
+        <div class="ticker-chip">
+          <span class="chip-dot"></span> SYNAPTIC PROBE: ENGAGED
+        </div>
+        <div class="ticker-chip">
+          <span class="chip-dot"></span> LATENCY: 12ms
+        </div>
+      </div>
+    </section>
+
+    <!-- SCREEN 3: Result Screen -->
+    <section id="screen-result" class="screen-card" aria-labelledby="result-heading">
+      <div class="card-corner corner-tl"></div>
+      <div class="card-corner corner-tr"></div>
+      <div class="card-corner corner-bl"></div>
+      <div class="card-corner corner-br"></div>
+
+      <!-- Result Banner Badge -->
+      <div class="badge-pill result-pill">
+        <span class="result-check-icon">✓</span>
+        <span>FINAL VERDICT GENERATED</span>
+      </div>
+
+      <h2 id="result-heading" class="result-main-title">
+        Analysis <span class="gradient-text-green">Complete</span>
+      </h2>
+
+      <div class="result-subject-container">
+        <span class="report-badge">CONFIDENTIAL AUDIT</span>
+        <h3 id="result-subject-name" class="result-subject-text">Report for: Rahul</h3>
+      </div>
+
+      <!-- Punchy Tamil Prank Message Card -->
+      <div class="verdict-card">
+        <div class="verdict-glow"></div>
+        <div class="verdict-header">
+          <span class="verdict-alert-icon">⚠️</span>
+          <span class="verdict-alert-title">CRITICAL BEHAVIOURAL FINDING</span>
+        </div>
+        <p class="tamil-punchline">
+          “Semester vara poguthu… pooi padi! Ya time waste pandra? 😤📚”
+        </p>
+        <p class="playful-subline">
+          Official recommendation: Close this website and start studying.
+        </p>
+      </div>
+
+      <!-- Analysis Breakdown Mock Metrics -->
+      <div class="breakdown-grid">
+        <div class="breakdown-card">
+          <div class="breakdown-val danger">99.8%</div>
+          <div class="breakdown-lbl">Procrastination Index</div>
+        </div>
+        <div class="breakdown-card">
+          <div class="breakdown-val warning">0.02%</div>
+          <div class="breakdown-lbl">Book Opening Probability</div>
+        </div>
+        <div class="breakdown-card">
+          <div class="breakdown-val safe">100%</div>
+          <div class="breakdown-lbl">Binge Watching Capability</div>
+        </div>
+      </div>
+
+      <!-- Restart Button -->
+      <button type="button" id="btn-restart" class="cyber-btn restart-btn">
+        <span class="btn-glow"></span>
+        <span class="btn-content">
+          <span class="btn-text">Fine, I’ll study 😭</span>
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"></path>
+          </svg>
+        </span>
+      </button>
+
+      <div class="share-hint">
+        <span>💡 Share this with your college friends to test their focus!</span>
+      </div>
+    </section>
+
+    <!-- Creator Credit Footer -->
+    <footer class="creator-footer">
+      <span class="creator-label">Creator:</span>
+      <a href="https://www.instagram.com/_.sanjzx/" target="_blank" rel="noopener noreferrer" class="creator-link" title="Instagram: _.sanjzx">
+        <svg class="instagram-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+        </svg>
+        <span class="creator-id">_.sanjzx</span>
+      </a>
+    </footer>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
