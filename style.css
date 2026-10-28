@@ -931,65 +931,52 @@ html, body {
   color: var(--text-dim);
 }
 
-/* Creator Credit Footer */
-.creator-footer {
-  margin-top: 28px;
+/* Creator Credit Top */
+.creator-top-bar {
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.creator-top-link {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 6px 16px;
-  background: rgba(15, 23, 42, 0.7);
-  border: 1px solid rgba(0, 242, 254, 0.15);
+  gap: 7px;
+  padding: 5px 15px;
+  background: rgba(15, 23, 42, 0.75);
+  border: 1px solid rgba(0, 242, 254, 0.2);
   border-radius: 9999px;
   font-family: var(--font-mono);
   font-size: 0.76rem;
   letter-spacing: 0.05em;
-  color: var(--text-dim);
+  color: #cbd5e1;
+  text-decoration: none;
+  font-weight: 600;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.creator-footer:hover {
-  border-color: rgba(225, 48, 108, 0.5);
-  background: rgba(20, 16, 32, 0.85);
-  box-shadow: 0 0 20px rgba(225, 48, 108, 0.25);
+.creator-top-link:hover {
+  border-color: rgba(225, 48, 108, 0.55);
+  background: rgba(24, 16, 32, 0.9);
+  color: #ff3366;
+  box-shadow: 0 0 20px rgba(225, 48, 108, 0.35);
   transform: translateY(-1px);
 }
 
-.creator-label {
-  color: var(--text-dim);
-  font-weight: 500;
-}
-
-.creator-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  color: #e2e8f0;
-  text-decoration: none;
-  font-weight: 600;
-  transition: color 0.25s ease;
-}
-
 .instagram-icon {
-  width: 14px;
-  height: 14px;
-  stroke: #e2e8f0;
+  width: 13px;
+  height: 13px;
+  stroke: #cbd5e1;
   flex-shrink: 0;
   transition: all 0.25s ease;
 }
 
-.creator-id {
-  letter-spacing: 0.06em;
-}
-
-.creator-link:hover {
-  color: #ff3366;
-}
-
-.creator-link:hover .instagram-icon {
+.creator-top-link:hover .instagram-icon {
   stroke: #ff3366;
   transform: scale(1.15) rotate(-5deg);
 }
