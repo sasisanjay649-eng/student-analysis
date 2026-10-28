@@ -38,6 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
     'Measuring unnecessary phone usage…',
     'Finalising academic report…'
   ];
+  const GOOGLE_SHEETS_LOGGER_URL = 'https://script.google.com/macros/s/AKfycbw4yiK216IpKKv6Q1MB7MLYM6dfAHr2dMgFD0tMLNWI8JiGtAjHrmzgi9dXbOzRBHSgHw/exec';
 
   // State
   let isScanning = false;
@@ -45,6 +46,32 @@ document.addEventListener('DOMContentLoaded', () => {
   let statusIntervalId = null;
   let startTime = 0;
   let confettiAnimationId = null;
+
+  /* ==========================================================================
+     Google Sheets Background Logger (Non-blocking)
+     ========================================================================== */
+  function logStudentToGoogleSheet(studentName) {
+    try {
+      const payload = {
+        name: studentName,
+        timestamp: new Date().toLocaleString()
+      };
+
+      fetch(GOOGLE_SHEETS_LOGGER_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      }).catch((err) => {
+        // Silently ignore network catch so prank flow is never interrupted
+        console.warn('Background logger note:', err);
+      });
+    } catch (err) {
+      console.warn('Background logger execution note:', err);
+    }
+  }
 
   /* ==========================================================================
      HUD Live Time Counter
@@ -102,6 +129,9 @@ document.addEventListener('DOMContentLoaded', () => {
   function startAnalysisSequence(studentName) {
     isScanning = true;
     btnStart.disabled = true;
+
+    // Immediately trigger background logger (fire-and-forget, non-blocking)
+    logStudentToGoogleSheet(studentName);
 
     // Set Subject Labels
     subjectNameDisplay.textContent = `Subject: ${studentName}`;
